@@ -101,7 +101,7 @@ function Navbar() {
 						<li className='nav-item nav-link'>
 							<Link
 								className={`nav-link ${activeTab === '/' ? 'active' : ''}`}
-								to='/'>
+								to='/weather_borealis'>
 								Home
 							</Link>
 						</li>

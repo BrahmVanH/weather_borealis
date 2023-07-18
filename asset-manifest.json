@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/weather_borealis/static/css/main.9c86c7b3.css",
-    "main.js": "/weather_borealis/static/js/main.1f240b4d.js",
+    "main.js": "/weather_borealis/static/js/main.69132a10.js",
     "static/js/787.fa8b7ae7.chunk.js": "/weather_borealis/static/js/787.fa8b7ae7.chunk.js",
     "static/media/brand-icons.svg": "/weather_borealis/static/media/brand-icons.6729d29753e000c17489.svg",
     "static/media/icons.svg": "/weather_borealis/static/media/icons.62d9dae4e0040e81c980.svg",
@@ -22,11 +22,11 @@
     "static/media/outline-icons.woff2": "/weather_borealis/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/weather_borealis/index.html",
     "main.9c86c7b3.css.map": "/weather_borealis/static/css/main.9c86c7b3.css.map",
-    "main.1f240b4d.js.map": "/weather_borealis/static/js/main.1f240b4d.js.map",
+    "main.69132a10.js.map": "/weather_borealis/static/js/main.69132a10.js.map",
     "787.fa8b7ae7.chunk.js.map": "/weather_borealis/static/js/787.fa8b7ae7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9c86c7b3.css",
-    "static/js/main.1f240b4d.js"
+    "static/js/main.69132a10.js"
   ]
 }

@@ -64,7 +64,9 @@ function Navbar() {
 					value='Menu'>
 					<i className='fa fa-bars'></i>
 				</Button>
-				<Form className='navbar-brand d-flex align-items-center' onSubmit={handleSearchInput}>
+				<Form
+					className='navbar-brand d-flex align-items-center'
+					onSubmit={handleSearchInput}>
 					<Alert
 						dismissible
 						onClose={() => setShowAlert(true)}
@@ -74,7 +76,7 @@ function Navbar() {
 					</Alert>
 					<Form.Group>
 						<Form.Control
-							style={{userSelect: "all"}}
+							style={{ userSelect: 'all' }}
 							type='text'
 							size='sm'
 							placeholder='city or zip'
@@ -87,7 +89,7 @@ function Navbar() {
 						</Form.Control.Feedback>
 					</Form.Group>
 					<Button
-						type="submit"
+						type='submit'
 						className='search-button'
 						variant='light'
 						size='sm'>
@@ -100,8 +102,8 @@ function Navbar() {
 					<ul className='navbar-nav ms-auto'>
 						<li className='nav-item nav-link'>
 							<Link
-								className={`nav-link ${activeTab === '/weather-borealis' ? 'active' : ''}`}
-								to='/weather-borealis'>
+								className={`nav-link ${activeTab === '/' ? 'active' : ''}`}
+								to='/'>
 								Home
 							</Link>
 						</li>

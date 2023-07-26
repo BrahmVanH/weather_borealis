@@ -23,7 +23,7 @@ function App() {
 			<WeatherProvider>
 				<Navbar />
 				<Routes>
-					<Route path='/weather_borealis' element={<Home />} />
+					<Route path='/' element={<Home />} />
 					<Route path='/aurora' element={<Aurora />} />
 					<Route path='/contact' element={<Contact />} />
 				</Routes>

@@ -1,7 +1,7 @@
 {
   "name": "weatherborealis",
   "version": "0.1.0",
-  "homepage": "https://www.weatherborealis.com/",
+  "homepage": "https://weatherborealis.com/",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.5.8",

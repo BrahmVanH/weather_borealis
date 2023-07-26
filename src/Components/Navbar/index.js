@@ -9,7 +9,7 @@ import {
 	WEATHER_LOCATION_LOADED,
 } from '../../utils/actions';
 import { getCurrentWeatherByCity } from '../../utils/axios';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaBars } from 'react-icons/fa';
 
 function Navbar() {
 	const location = useLocation();
@@ -62,7 +62,7 @@ function Navbar() {
 					aria-expanded='false'
 					aria-label='Toggle navigation'
 					value='Menu'>
-					<i className='fa fa-bars'></i>
+					<FaBars />
 				</Button>
 				<Form
 					className='navbar-brand d-flex align-items-center'
@@ -96,7 +96,10 @@ function Navbar() {
 						<FaSearch />
 					</Button>
 				</Form>
-				<div id='navbarResponsive' className='collapse navbar-collapse'>
+				<div
+					id='navbarResponsive'
+					className='collapse navbar-collapse'
+					style={{ transform: 'translate(-191)' }}>
 					<section className='py-4 py-xl-5'></section>
 					<i className='fas fa-search'></i>
 					<ul className='navbar-nav ms-auto'>

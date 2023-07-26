@@ -21,6 +21,8 @@ import { formatDate } from '../utils/dateFormat';
 import CurrentWeather from '../Components/CurrentWeather';
 import Forecast from '../Components/Forecast';
 
+import auroraBurned from '../assets/img/auroraBurned.png';
+
 function Home() {
 	const componentDidMount = () => {
 		if ('geolocation' in navigator) {
@@ -178,7 +180,7 @@ function Home() {
 				className='masthead'
 				id='topOfPage'
 				style={{
-					backgroundImage: 'url(/assets/img/pink-grey-background-image.svg)',
+					backgroundImage: `url(${auroraBurned})`,
 				}}>
 				{currentWeather ? (
 					<div className='weather-response d-flex flex-column'>

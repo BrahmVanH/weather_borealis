@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getSwsSolarWindData } from '../utils/axios';
 import SpaceWeatherChart from '../Components/SpaceWeatherChart';
 
+import auroraBurned from '../assets/img/auroraBurned.png';
+
+
 function Aurora() {
 	const [solarWindConditions, setSolarWindConditions] = useState([]);
 	const [planetaryKpIndex, setPlanetaryKpIndex] = useState([]);
@@ -133,29 +136,26 @@ function Aurora() {
 
 	return (
 		<>
-		<div
-		className='masthead'
-		id='topOfPage'
-		style={{
-					backgroundImage: 'url(/assets/img/pink-grey-background-image.svg)',
-		}}>
-		{filterKpIndexData ? ( 
-<div className='current-forecast mx-auto'>
-			<div className='chart-container'>
-				<div>
-					<p className='m-auto'>Hourly Forecast</p>
-				</div>
-				<SpaceWeatherChart solarWeatherData={filteredKpIndexData} />
+			<div
+				className='masthead'
+				id='topOfPage'
+				style={{
+					backgroundImage: `url(${auroraBurned})`,
+				}}>
+				{filterKpIndexData ? (
+					<div className='current-forecast mx-auto'>
+						<div className='chart-container'>
+							<div>
+								<p className='m-auto'>Hourly Forecast</p>
+							</div>
+							<SpaceWeatherChart solarWeatherData={filteredKpIndexData} />
+						</div>
+					</div>
+				) : (
+					<div>Loading...</div>
+				)}
 			</div>
-		</div>
-		) : (
-			<div>
-				Loading...
-				</div>
-		)}
-		</div>
 		</>
-		
 	);
 }
 

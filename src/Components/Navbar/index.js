@@ -100,15 +100,15 @@ function Navbar() {
 					<ul className='navbar-nav ms-auto'>
 						<li className='nav-item nav-link'>
 							<Link
-								className={`nav-link ${activeTab === '/' ? 'active' : ''}`}
-								to='/weather_borealis'>
+								className={`nav-link ${activeTab === '/weather-borealis' ? 'active' : ''}`}
+								to='/weather-borealis'>
 								Home
 							</Link>
 						</li>
 						<li className='nav-item nav-link'>
 							<Link
 								className={`nav-link ${
-									activeTab === '/contact' ? 'active' : ''
+									activeTab === '/aurora' ? 'active' : ''
 								}`}
 								to='/aurora'>
 								Aurora Forecast

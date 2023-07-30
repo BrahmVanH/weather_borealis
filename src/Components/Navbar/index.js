@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Nav, Button, Form, Alert } from 'react-bootstrap';
+import { Nav, Button, Form, Alert, Dropdown } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import { useWeatherContext } from '../../utils/GlobalState';
 import {
@@ -10,6 +10,8 @@ import {
 } from '../../utils/actions';
 import { getCurrentWeatherByCity } from '../../utils/axios';
 import { FaSearch, FaBars } from 'react-icons/fa';
+
+import '../../styles/style.css';
 
 function Navbar() {
 	const location = useLocation();
@@ -96,7 +98,8 @@ function Navbar() {
 						<FaSearch />
 					</Button>
 				</Form>
-				<div
+				<Dropdown
+					flip={false}
 					id='navbarResponsive'
 					className='collapse navbar-collapse'
 					style={{ transform: 'translate(-191)' }}>
@@ -129,7 +132,7 @@ function Navbar() {
 							</Link>
 						</li>
 					</ul>
-				</div>
+				</Dropdown>
 			</div>
 		</Nav>
 	);

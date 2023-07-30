@@ -15,6 +15,10 @@ export const getCurrentWeatherByCity = async (weatherLocation) => {
 	}
 };
 
+export const getNoaaAlerts = async () => {
+	
+}
+
 export const getSwsSolarWindData = async () => {
 	const solarWindDay1Endpoint =
 		'https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json';

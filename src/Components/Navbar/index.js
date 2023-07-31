@@ -99,7 +99,7 @@ function Navbar() {
 					</Button>
 				</Form>
 				<Dropdown
-					flip={false}
+					
 					id='navbarResponsive'
 					className='collapse navbar-collapse'
 					style={{ transform: 'translate(-191)' }}>

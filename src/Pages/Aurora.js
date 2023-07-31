@@ -23,6 +23,13 @@ function Aurora() {
 	const [currentKp, setCurrentKp] = useState([]);
 	const [currentSolarWindConditions, setCurrentSolarWindConditions] = useState([]);
 	const [currentSolarWindSpeed, setCurrentSolarWindSpeed] = useState([]);
+	const [spaceWeather, setSpaceWeather] = useState({
+		noaaAlerts: "",
+		currentKp: "",
+		currentSolarWindConditions: "",
+		
+
+	})
 
 	const [loading, setLoading] = useState(true);
 
@@ -89,14 +96,13 @@ function Aurora() {
 	}, [solarWindConditions]);
 
 	useEffect(() => {
-		setCurrentSolarWindConditions(solarWindConditions[1]);
+		setSpaceWeather({ currentSolarWindConditions: solarWindConditions[1]});
 		console.log(solarWindConditions[1]);
 	}, [solarWindConditions]);
 
-	// useEffect(() => {
-	// 	setCurrentSolarWindObjects(currentSolarWindConditions);
-
-	// }, [currentSolarWindConditions]);
+	useEffect(() => {
+		
+	});
 
 	return (
 		<>

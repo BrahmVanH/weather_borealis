@@ -26,10 +26,21 @@ function Aurora() {
 
 	const [loading, setLoading] = useState(true);
 
-		const weatherTextStyle = {
-			fontSize: '1rem',
-			width: '75%',
-		};
+	const weatherTextStyle = {
+		fontSize: '1rem',
+		width: '75%',
+	};
+
+	useEffect(() => {
+		fetchSolarWind1Hour()
+			.then((data) => setSolarWindConditions(data))
+			.catch((error) => console.error(error));
+	}, []);
+
+	const setCurrentSolarWindObjects = (currentSolarWindConditions) => {
+		const [timeTag, speed, density, temperature, bx, by, bz, bt, vx, vy, vz] = currentSolarWindConditions;
+		console.log(timeTag);
+	};
 
 	const filterKpIndexData = (planetaryKpIndexData) => {
 		console.log('Filtering kp index data...');
@@ -67,7 +78,6 @@ function Aurora() {
 			.catch((error) => console.error(error));
 	}, []);
 
-
 	useEffect(() => {
 		const filteredKpIndexData = filterKpIndexData(planetaryKpIndexData);
 		console.log(filteredKpIndexData);
@@ -75,30 +85,18 @@ function Aurora() {
 	}, [planetaryKpIndexData]);
 
 	useEffect(() => {
-		fetchSolarWind1Hour()
-			.then((data) => setSolarWindConditions(data))
-			.catch((error) => console.error(error));
-	}, []);
-
-	useEffect(() => {
 		console.log(solarWindConditions[1]);
 	}, [solarWindConditions]);
 
 	useEffect(() => {
-		setCurrentSolarWindConditions(solarWindConditions[1])
+		setCurrentSolarWindConditions(solarWindConditions[1]);
 		console.log(solarWindConditions[1]);
 	}, [solarWindConditions]);
 
-	useEffect(() => {
-		if (currentSolarWindConditions[1] != null) {
-			setCurrentSolarWindSpeed(currentSolarWindConditions[1]);
-		} else {
-			return;
-		}
-	}, [solarWindConditions, currentSolarWindConditions]);
+	// useEffect(() => {
+	// 	setCurrentSolarWindObjects(currentSolarWindConditions);
 
-	
-
+	// }, [currentSolarWindConditions]);
 
 	return (
 		<>
@@ -106,14 +104,14 @@ function Aurora() {
 				className='masthead'
 				id='topOfPage'
 				style={{
-					backgroundImage: `url(${auroraBurned})`, 
+					backgroundImage: `url(${auroraBurned})`,
 				}}>
 				<div className='container' id='currentWeather' data-speed='0.5'>
 					<div className='weather-text-boxes col-2 col-md-2'>
 						<div className='weather-text-box-border'>
 							<p style={weatherTextStyle}>
 								<span className='current-weather-bold-text'>Kp Index: </span>
-								{currentKp} 
+								{currentKp}
 							</p>
 							<p style={weatherTextStyle}>
 								<span className='current-weather-bold-text'>Solar Wind: </span>
@@ -212,9 +210,3 @@ export default Aurora;
 // 		filterSolarWindData(solarWindConditions);
 // 	}
 // }, [solarWindConditions]);
-
-
-
-
-
-	

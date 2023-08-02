@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 
+import NoaaAlerts from '../Components/NOAAAlerts';
+import CurrentSpaceWeather from '../Components/CurrentSpaceWeather';
 import SpaceWeatherChart from '../Components/SpaceWeatherChart';
 import {
 	fetchNoaaAlerts,
@@ -11,11 +13,13 @@ import {
 	fetchSunspotReport,
 	fetchSolarRadioFlux,
 	fetchSolarRadioFluxPrediction,
+	fetchAllTheSpaceWeather,
 } from '../utils/fetches';
 
 import auroraBurned from '../assets/img/auroraBurned.png';
 
 function Aurora() {
+	const [noaaAlerts, setNoaaAlerts] = useState([]);
 	const [solarWindConditions, setSolarWindConditions] = useState([]);
 	const [planetaryKpIndexData, setPlanetaryKpIndexData] = useState([]);
 	const [filteredSolarConditions, setFilteredSolarConditions] = useState([]);
@@ -24,30 +28,11 @@ function Aurora() {
 	const [currentSolarWindConditions, setCurrentSolarWindConditions] = useState([]);
 	const [currentSolarWindSpeed, setCurrentSolarWindSpeed] = useState([]);
 	const [spaceWeather, setSpaceWeather] = useState({
-		noaaAlerts: "",
 		currentKp: "",
-		currentSolarWindConditions: "",
-		
-
-	})
-
+		currentSolarWindConditions: [],
+	});
+	const [spaceWeatherLoaded, setSpaceWeatherLoaded] = useState(false);
 	const [loading, setLoading] = useState(true);
-
-	const weatherTextStyle = {
-		fontSize: '1rem',
-		width: '75%',
-	};
-
-	useEffect(() => {
-		fetchSolarWind1Hour()
-			.then((data) => setSolarWindConditions(data))
-			.catch((error) => console.error(error));
-	}, []);
-
-	const setCurrentSolarWindObjects = (currentSolarWindConditions) => {
-		const [timeTag, speed, density, temperature, bx, by, bz, bt, vx, vy, vz] = currentSolarWindConditions;
-		console.log(timeTag);
-	};
 
 	const filterKpIndexData = (planetaryKpIndexData) => {
 		console.log('Filtering kp index data...');
@@ -80,8 +65,20 @@ function Aurora() {
 	};
 
 	useEffect(() => {
+		fetchNoaaAlerts()
+			.then((data) => setNoaaAlerts(data[0]?.message))
+			.catch((error) => console.error(error));
+	}, []);
+
+	useEffect(() => {
 		fetchPlanetaryKpIndex()
 			.then((data) => setPlanetaryKpIndexData(data))
+			.catch((error) => console.error(error));
+	}, []);
+
+	useEffect(() => {
+		fetchSolarWind1Hour()
+			.then((data) => setSolarWindConditions(data))
 			.catch((error) => console.error(error));
 	}, []);
 
@@ -92,17 +89,30 @@ function Aurora() {
 	}, [planetaryKpIndexData]);
 
 	useEffect(() => {
+		console.log(solarWindConditions);
+	}, [solarWindConditions]);
+
+	useEffect(() => {
+		setSpaceWeather((prevState) => ({ ...prevState, currentKp: currentKp }));
+	}, [currentKp]);
+
+	useEffect(() => {
+		setSpaceWeather((prevState) => ({ ...prevState, currentSolarWindConditions: solarWindConditions[1] }));
+	}, [solarWindConditions]);
+
+	useEffect(() => {
 		console.log(solarWindConditions[1]);
 	}, [solarWindConditions]);
 
 	useEffect(() => {
-		setSpaceWeather({ currentSolarWindConditions: solarWindConditions[1]});
-		console.log(solarWindConditions[1]);
-	}, [solarWindConditions]);
+		console.log(spaceWeather);
+	}, [spaceWeather]);
 
 	useEffect(() => {
-		
-	});
+		if (spaceWeather.currentKp !== "" && spaceWeather.currentSolarWindConditions !== []) {
+			setSpaceWeatherLoaded(true);
+		}
+	}, [spaceWeather]);
 
 	return (
 		<>
@@ -112,23 +122,25 @@ function Aurora() {
 				style={{
 					backgroundImage: `url(${auroraBurned})`,
 				}}>
-				<div className='container' id='currentWeather' data-speed='0.5'>
-					<div className='weather-text-boxes col-2 col-md-2'>
-						<div className='weather-text-box-border'>
-							<p style={weatherTextStyle}>
-								<span className='current-weather-bold-text'>Kp Index: </span>
-								{currentKp}
-							</p>
-							<p style={weatherTextStyle}>
-								<span className='current-weather-bold-text'>Solar Wind: </span>
-								{currentSolarWindSpeed} km/h
-							</p>
-							<p style={weatherTextStyle}>
-								<span className='current-weather-bold-text'>Conditions: </span>
-							</p>
+				<div>
+					{noaaAlerts ? (
+						<NoaaAlerts noaaAlerts={noaaAlerts} />
+					) : (
+						<div>
+							<p> Loading NOAA Space Weather Alerts... </p>
 						</div>
-					</div>
+					)}
 				</div>
+				<div className='d-flex justify-content-center'>
+					{spaceWeatherLoaded ? (
+						<div className='container'>
+							<CurrentSpaceWeather spaceWeather={spaceWeather} />
+						</div>
+					) : (
+						<div>Loading Current Space Weather...</div>
+					)}
+				</div>
+
 				{filterKpIndexData ? (
 					<div className='current-forecast mx-auto'>
 						<div className='chart-container'>
@@ -157,62 +169,3 @@ function Aurora() {
 }
 
 export default Aurora;
-
-// const filterSolarWindData = (solarWindData) => {
-// 	console.log('filtering solarWindData...');
-// 	console.log(solarWindData);
-
-// 	const header = solarWindData.shift();
-// 	console.log(solarWindData);
-
-// 	const hourlyData = [];
-
-// 	for (const minuteData of solarWindData) {
-// 		const timeTag = minuteData[0];
-
-// 		const minute = new Date(timeTag).getUTCMinutes();
-// 		const second = new Date(timeTag).getUTCSeconds();
-
-// 		if (minute === 0 && second === 0) {
-// 			hourlyData.push(solarWindData[i]);
-// 		}
-// 	}
-
-// 	console.log(hourlyData);
-// 	return hourlyData;
-// };
-
-// useEffect(() => {
-// 	fetch('https://services.swpc.noaa.gov/products/solar-wind/mag-1-day.json')
-// 		.then((response) => {
-// 			if (response.ok) {
-// 				return response.json();
-// 			}
-// 		})
-// 		.then((data) => {
-// 			console.log(data);
-// 			setSolarWindConditions(data);
-// 			console.log(solarWindConditions);
-// 		})
-// 		.catch((error) => {
-// 			console.error('Error fetching solar wind data');
-// 		})
-// 		.finally(() => {
-// 			setLoading(false);
-// 		});
-// }, []);
-
-// useEffect(() => {
-// 	console.log(solarWindConditions);
-// 	const filtered = filterSolarWindData(solarWindConditions);
-// 	console.log(filtered);
-// 	setFilteredSolarConditions(filtered);
-// 	console.log(filteredSolarConditions);
-// }, [solarWindConditions]);
-
-// useEffect(() => {
-// 	if (!loading && solarWindConditions !== []) {
-// 		console.log(solarWindConditions);
-// 		filterSolarWindData(solarWindConditions);
-// 	}
-// }, [solarWindConditions]);

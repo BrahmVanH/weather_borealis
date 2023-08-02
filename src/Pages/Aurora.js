@@ -143,7 +143,7 @@ function Aurora() {
 					<div className='current-forecast mx-auto'>
 						<div className='chart-container'>
 							<div>
-								<p className='m-auto'>Hourly Forecast</p>
+								<p className='m-auto'>3-Hour KP Forecast</p>
 							</div>
 							<SpaceWeatherChart solarWeatherData={filteredKpIndexData} />
 						</div>

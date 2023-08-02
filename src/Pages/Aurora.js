@@ -25,11 +25,9 @@ function Aurora() {
 	const [filteredSolarConditions, setFilteredSolarConditions] = useState([]);
 	const [filteredKpIndexData, setFilteredKpIndexData] = useState([]);
 	const [currentKp, setCurrentKp] = useState([]);
-	const [currentSolarWindConditions, setCurrentSolarWindConditions] = useState([]);
-	const [currentSolarWindSpeed, setCurrentSolarWindSpeed] = useState([]);
 	const [spaceWeather, setSpaceWeather] = useState({
-		currentKp: "",
-		currentSolarWindConditions: [],
+		currentKp: null,
+		currentSolarWindConditions: null,
 	});
 	const [spaceWeatherLoaded, setSpaceWeatherLoaded] = useState(false);
 	const [loading, setLoading] = useState(true);
@@ -109,7 +107,7 @@ function Aurora() {
 	}, [spaceWeather]);
 
 	useEffect(() => {
-		if (spaceWeather.currentKp !== "" && spaceWeather.currentSolarWindConditions !== []) {
+		if (spaceWeather.currentKp !== null && spaceWeather.currentSolarWindConditions !== null) {
 			setSpaceWeatherLoaded(true);
 		}
 	}, [spaceWeather]);
@@ -148,16 +146,6 @@ function Aurora() {
 								<p className='m-auto'>Hourly Forecast</p>
 							</div>
 							<SpaceWeatherChart solarWeatherData={filteredKpIndexData} />
-						</div>
-						<div>
-							<Button onClick={fetchNoaaAlerts}>NOAA Alerts</Button>
-							<Button onClick={fetchPlanetaryKpIndex}>Planetary kp index</Button>
-							<Button onClick={fetchSolarWind1Hour}>Solar Wind 1-Hour</Button>
-							<Button onClick={fetchXrayFlare6Hour}>X-ray 6-Hour</Button>
-							<Button onClick={fetchXrayFlare24Hour}>X-ray 24-hour</Button>
-							<Button onClick={fetchSunspotReport}>Sunspot Report</Button>
-							<Button onClick={fetchSolarRadioFlux}>10.7cm Flux</Button>
-							<Button onClick={fetchSolarRadioFluxPrediction}>10.7cm Flux Prediction</Button>
 						</div>
 					</div>
 				) : (

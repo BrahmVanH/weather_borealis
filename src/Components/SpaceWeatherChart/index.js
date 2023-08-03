@@ -1,45 +1,39 @@
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 import React, { useState, useEffect } from 'react';
+import createUtilityClassName from 'react-bootstrap/esm/createUtilityClasses';
+import { useMediaQuery } from 'react-responsive';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const SpaceWeatherChart = (solarWeatherData) => {
-	const [screenSize, setScreenSize] = useState({
-		dynamicWidth: window.innerWidth,
-		dynamicHeight: window.innerHeight,
-	});
-
-	const [chartSize, setChartSize] = useState({
-	});
+	const isSmallScreen = useMediaQuery({ maxWidth: 600 });
+	const isMobileScreen = useMediaQuery({ maxWidth: 768 });
+	const isMediumScreen = useMediaQuery({ maxWidth: 992 });
+	const isLargeScreen = useMediaQuery({ minWidth: 992 });
 
 	const smallChartSize = { height: 200, width: 400 };
 	const mediumChartSize = { height: 300, width: 533 };
 	const largeChartSize = { height: 400, width: 800 };
+	
+	const [chartSize, setChartSize] = useState(smallChartSize);
 
-	const updateViewport = () => {
-		setScreenSize({
-			dynamicWidth: window.innerWidth,
-			dynamicHeight: window.innerHeight,
-		});
-
-		if (screenSize.dynamicWidth <= 600) {
+	const queryScreenSize = () => {
+		if (isSmallScreen) {
 			setChartSize(smallChartSize);
-		} else if (600 < screenSize.dynamicWidth < 768) {
+		} else if (isMobileScreen) {
 			setChartSize(smallChartSize);
-		} else if (768 < screenSize.dynamicWidth < 992) {
+		} else if (isMediumScreen) {
 			setChartSize(mediumChartSize);
+		} else if (isLargeScreen) {
+			setChartSize(largeChartSize);
 		} else {
 			setChartSize(largeChartSize);
 		}
 	};
-	useEffect(() => {
-		updateViewport();
-		console.log(screenSize);
-		console.log(chartSize);
-		// window.addEventListener('resize', updateViewport);
 
-		// return () => {
-		// 	window.removeEventListener('resize', updateViewport);
-		// };
+	useEffect(() => {
+		queryScreenSize();
 	}, []);
+	
 
 	return (
 		<LineChart width={chartSize.width} height={chartSize.height} data={solarWeatherData.solarWeatherData}>

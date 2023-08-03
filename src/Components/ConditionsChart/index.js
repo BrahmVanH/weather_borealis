@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useMediaQuery } from 'react-responsive';
+
 import {
 	LineChart,
 	Line,
@@ -15,6 +17,35 @@ function Chart(chartWeatherConditions) {
 		backgroundColor: 'rgb(33, 37, 41, 0.8)',
 		borderRadius: '15px',
 	};
+	const isSmallScreen = useMediaQuery({ maxWidth: 600 });
+	const isMobileScreen = useMediaQuery({ maxWidth: 768 });
+	const isMediumScreen = useMediaQuery({ maxWidth: 992 });
+	const isLargeScreen = useMediaQuery({ minWidth: 992 });
+
+	const smallChartSize = { height: 200, width: 400 };
+	const mediumChartSize = { height: 300, width: 533 };
+	const largeChartSize = { height: 350, width: 800 };
+
+	const [chartSize, setChartSize] = useState(smallChartSize);
+
+	const queryScreenSize = () => {
+		if (isSmallScreen) {
+			setChartSize(smallChartSize);
+		} else if (isMobileScreen) {
+			setChartSize(smallChartSize);
+		} else if (isMediumScreen) {
+			setChartSize(mediumChartSize);
+		} else if (isLargeScreen) {
+			setChartSize(largeChartSize);
+		} else {
+			setChartSize(largeChartSize);
+		}
+	};
+
+	useEffect(() => {
+		queryScreenSize();
+	}, []);
+
 	useEffect(() => {
 		console.log(chartWeatherConditions);
 	}, [chartWeatherConditions]);
@@ -22,8 +53,8 @@ function Chart(chartWeatherConditions) {
 	return (
 		<LineChart
 			name='Hourly Forecast'
-			width={800}
-			height={350}
+			width={chartSize.width}
+			height={chartSize.height}
 			data={chartWeatherConditions.chartConditions}
 			style={{
 				background: '#222',

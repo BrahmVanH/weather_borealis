@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d569dbb0.css",
-    "main.js": "/static/js/main.27078964.js",
+    "main.css": "/static/css/main.32f2c482.css",
+    "main.js": "/static/js/main.12ea840c.js",
     "static/js/787.fa8b7ae7.chunk.js": "/static/js/787.fa8b7ae7.chunk.js",
     "static/media/auroraBurned.png": "/static/media/auroraBurned.2ab714470aa948038a15.png",
     "static/media/brand-icons.svg": "/static/media/brand-icons.6729d29753e000c17489.svg",
@@ -22,12 +22,12 @@
     "static/media/outline-icons.woff": "/static/media/outline-icons.ddae9b1ba9b0b42f5880.woff",
     "static/media/outline-icons.woff2": "/static/media/outline-icons.687a4990ea22bb1a49d4.woff2",
     "index.html": "/index.html",
-    "main.d569dbb0.css.map": "/static/css/main.d569dbb0.css.map",
-    "main.27078964.js.map": "/static/js/main.27078964.js.map",
+    "main.32f2c482.css.map": "/static/css/main.32f2c482.css.map",
+    "main.12ea840c.js.map": "/static/js/main.12ea840c.js.map",
     "787.fa8b7ae7.chunk.js.map": "/static/js/787.fa8b7ae7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d569dbb0.css",
-    "static/js/main.27078964.js"
+    "static/css/main.32f2c482.css",
+    "static/js/main.12ea840c.js"
   ]
 }

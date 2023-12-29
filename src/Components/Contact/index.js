@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import ContactCard from './contactInformation';
 import ContactForm from './contactForm';
 
-import auroraBurned from '../../assets/img/auroraBurned.png';
+import auroraBurned from '../../assets/img/auroraBurned.webp';
 
 export default function Contact() {
 	return (

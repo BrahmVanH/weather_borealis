@@ -21,7 +21,7 @@ import { formatDate } from '../utils/dateFormat';
 import CurrentWeather from '../Components/CurrentWeather';
 import Forecast from '../Components/Forecast';
 
-import auroraBurned from '../assets/img/auroraBurned.png';
+import auroraBurned from '../assets/img/auroraBurned.webp';
 
 function Home() {
 	const componentDidMount = () => {
@@ -38,16 +38,7 @@ function Home() {
 
 	const [state, dispatch] = useWeatherContext();
 
-	const {
-		currentDate,
-		weatherLocation,
-		weatherLocationLoaded,
-		dataUnits,
-		currentWeather,
-		currentWeatherIcon,
-		forecastWeatherCurrentHour,
-		forecastWeatherToday,
-	} = state;
+	const { currentDate, weatherLocation, weatherLocationLoaded, dataUnits, currentWeather, currentWeatherIcon, forecastWeatherCurrentHour, forecastWeatherToday } = state;
 
 	const [forecastWeather, setForecastWeather] = useState([]);
 
@@ -78,8 +69,7 @@ function Home() {
 				});
 				dispatch({
 					type: SET_FORECAST_CURRENT_HOUR,
-					forecastWeatherCurrentHour:
-						weatherData?.forecast.forecastday[0].hour[0],
+					forecastWeatherCurrentHour: weatherData?.forecast.forecastday[0].hour[0],
 				});
 				dispatch({
 					type: SET_CURRENT_WEATHER_ICON,
@@ -90,9 +80,7 @@ function Home() {
 			}
 		} catch (err) {
 			console.error(err);
-			console.log(
-				'Something went wrong in the try catch fetchWeatherData function'
-			);
+			console.log('Something went wrong in the try catch fetchWeatherData function');
 		}
 	};
 
@@ -160,7 +148,6 @@ function Home() {
 		if (weatherLocation !== '' && weatherLocationLoaded === true) {
 			fetchWeatherData();
 			console.log(weatherLocation);
-		} else {
 		}
 	}, [weatherLocation, weatherLocationLoaded]);
 
@@ -175,59 +162,49 @@ function Home() {
 	// }, [browserLocation]);
 
 	return (
-		<>
-			<div
-				className='masthead'
-				id='topOfPage'
-				style={{
-					backgroundImage: `url(${auroraBurned})`,
-				}}>
-				{currentWeather ? (
-					<div className='weather-response d-flex flex-column'>
-						<div className='intro-body'>
-							<div className='container'>
-								<div className='row' style={{ padding: '2rem' }}>
-									<div
-										className='mx-auto'
-										style={{ padding: '1rem 1rem 1rem 0rem' }}>
-										<h3>Current Weather</h3>
-										<CurrentWeather />
-									</div>
+		<div
+			className='masthead'
+			id='topOfPage'
+			style={{
+				backgroundImage: `url(${auroraBurned})`,
+			}}>
+			{currentWeather ? (
+				<div className='weather-response d-flex flex-column'>
+					<div className='intro-body'>
+						<div className='container'>
+							<div className='row' style={{ padding: '2rem' }}>
+								<div className='mx-auto' style={{ padding: '1rem 1rem 1rem 0rem' }}>
+									<h3>Current Weather</h3>
+									<CurrentWeather />
 								</div>
 							</div>
 						</div>
-						<section className='text-center' id='extended'>
-							<div className='container'>
-								{forecastWeather !== [] ? (
-									<div
-										className='mx-auto'
-										style={{ padding: '1rem', margin: '1rem' }}>
-										<h3>3-Day Forecast</h3>
+					</div>
+					<section className='text-center' id='extended'>
+						<div className='container'>
+							{forecastWeather.length > 0 ? (
+								<div className='mx-auto' style={{ padding: '1rem', margin: '1rem' }}>
+									<h3>3-Day Forecast</h3>
 
-										<div className='d-flex flex-wrap' id='tenDayForecast'>
-											<Forecast forecastWeather={forecastWeather} />
-										</div>
+									<div className='d-flex flex-wrap' id='tenDayForecast'>
+										<Forecast forecastWeather={forecastWeather} />
 									</div>
-								) : (
-									<></>
-								)}
-							</div>
-						</section>
-					</div>
-				) : (
-					<div
-						className='d-flex justify-content-center py-5'
-						style={{ width: '100%' }}>
-						<div
-							className='col-6 please-search'
-							style={{ padding: '2rem', fontSize: '1.5rem' }}>
-							{' '}
-							Please enter a location in the search bar{' '}
+								</div>
+							) : (
+								<></>
+							)}
 						</div>
+					</section>
+				</div>
+			) : (
+				<div className='d-flex justify-content-center py-5' style={{ width: '100%' }}>
+					<div className='col-6 please-search' style={{ padding: '2rem', fontSize: '1.5rem' }}>
+						{' '}
+						Please enter a location in the search bar{' '}
 					</div>
-				)}
-			</div>
-		</>
+				</div>
+			)}
+		</div>
 	);
 }
 

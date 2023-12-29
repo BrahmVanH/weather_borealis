@@ -117,7 +117,7 @@ header {
 }
 
 .chart-container {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     background: #222;
     color: #fff;
     border-radius: 15px;

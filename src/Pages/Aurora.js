@@ -16,7 +16,7 @@ import {
 	fetchAllTheSpaceWeather,
 } from '../utils/fetches';
 
-import auroraBurned from '../assets/img/auroraBurned.png';
+import auroraBurned from '../assets/img/auroraBurned.webp';
 
 function Aurora() {
 	const [noaaAlerts, setNoaaAlerts] = useState([]);
@@ -113,7 +113,6 @@ function Aurora() {
 	}, [spaceWeather]);
 
 	return (
-		<>
 			<div
 				className='masthead'
 				id='topOfPage'
@@ -152,7 +151,6 @@ function Aurora() {
 					<div>Loading...</div>
 				)}
 			</div>
-		</>
 	);
 }
 

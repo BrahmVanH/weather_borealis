@@ -31,7 +31,7 @@ function Navbar() {
 		setUserSearchInput({
 			userSearchInput: '',
 		});
-	}
+	};
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setUserSearchInput({ ...userSearchInput, [name]: value });
